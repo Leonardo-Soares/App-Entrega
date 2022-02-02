@@ -3,6 +3,10 @@
 ### Criando o projeto (opcional)
 'flutter create --project-name=vakinha_burguer_mobile --platforms=android --org br.com.academiadoflutter ./vakinha_burguer_mobile'
 
+### Aula 01 - 37:00
+
+
+
 A new Flutter project.
 
 ## Getting Started

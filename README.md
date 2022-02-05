@@ -1,9 +1,10 @@
 # dartweek
 
 ### Criando o projeto (opcional)
-ˋˋˋ
+
+~~~
 flutter create --project-name=vakinha_burguer_mobile --platforms=android --org br.com.academiadoflutter ./vakinha_burguer_mobile
-ˋˋˋ
+~~~
 
 ### Aula 01 - 37:00
 

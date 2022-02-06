@@ -1,12 +1,34 @@
-import 'package:dartweek/app/core/ui/config_ui.dart';
+import 'package:dartweek/app/core/ui/vakinha_state.dart';
 import 'package:dartweek/app/core/ui/widgets/vakinha_appbar.dart';
 import 'package:dartweek/app/core/ui/widgets/vakinha_button.dart';
 import 'package:dartweek/app/core/ui/widgets/vakinha_textformfield.dart';
+import 'package:dartweek/app/modules/auth/register/register_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
+import 'package:validatorless/validatorless.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState
+    extends VakinhaState<RegisterPage, RegisterController> {
+  final _formKey = GlobalKey<FormState>();
+  final _nameEC = TextEditingController();
+  final _emailEC = TextEditingController();
+  final _passwordEC = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailEC.dispose();
+    _nameEC.dispose();
+    _passwordEC.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +41,7 @@ class RegisterPage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Form(
+              key: _formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -37,19 +60,46 @@ class RegisterPage extends StatelessWidget {
                   const SizedBox(
                     height: 32,
                   ),
-                  const VakinhaTextfromfield(label: 'Nome:'),
+                  VakinhaTextfromfield(
+                    label: 'Nome:',
+                    controller: _nameEC,
+                    validator: Validatorless.required('Nome é obrigatório'),
+                  ),
                   const SizedBox(
                     height: 16,
                   ),
-                  const VakinhaTextfromfield(label: 'Email:'),
+                  VakinhaTextfromfield(
+                    label: 'Email:',
+                    controller: _emailEC,
+                    validator: Validatorless.multiple([
+                      Validatorless.required('Email é obrigatório'),
+                      Validatorless.email('Email incorreto'),
+                    ]),
+                  ),
                   const SizedBox(
                     height: 16,
                   ),
-                  const VakinhaTextfromfield(label: 'Senha:'),
+                  VakinhaTextfromfield(
+                    label: 'Senha:',
+                    obscureText: true,
+                    controller: _passwordEC,
+                    validator: Validatorless.multiple([
+                      Validatorless.required('Senha é obrigatória'),
+                      Validatorless.min(
+                          6, 'Senha deve conter pelo menos 6 caracteres'),
+                    ]),
+                  ),
                   const SizedBox(
                     height: 16,
                   ),
-                  const VakinhaTextfromfield(label: 'Confirmar Senha:'),
+                  VakinhaTextfromfield(
+                    label: 'Confirmar Senha:',
+                    obscureText: true,
+                    validator: Validatorless.multiple([
+                      Validatorless.required('Confirmar senha é obrigatória'),
+                      Validatorless.compare(_passwordEC, 'Senhas diferentes !'),
+                    ]),
+                  ),
                   const SizedBox(
                     height: 32,
                   ),
@@ -57,7 +107,16 @@ class RegisterPage extends StatelessWidget {
                     child: VakinhaButton(
                       width: double.infinity,
                       label: 'CADASTRAR',
-                      onPressed: () {},
+                      onPressed: () {
+                        final formValid =
+                            _formKey.currentState?.validate() ?? false;
+                        if (formValid) {
+                          controller.register(
+                              name: _nameEC.text,
+                              email: _emailEC.text,
+                              password: _passwordEC.text);
+                        }
+                      },
                     ),
                   ),
                 ],

@@ -6,9 +6,9 @@
 flutter create --project-name=vakinha_burguer_mobile --platforms=android --org br.com.academiadoflutter ./vakinha_burguer_mobile
 ~~~
 
-### Aula 01 - 37:00
-
-
+# AULA 2
+### Estudar LoaderMixin
+### Pesquisar sobre o dispose
 
 A new Flutter project.
 

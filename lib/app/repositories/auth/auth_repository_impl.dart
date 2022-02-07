@@ -6,12 +6,13 @@ import 'package:dartweek/app/models/user_model.dart';
 
 import './auth_repository.dart';
 
-class AuthRepositoryImpl implements AuthRepsitory {
-final RestClient _restClient;
+class AuthRepositoryImpl implements AuthRepository {
+  
+  final RestClient _restClient;
 
-AuthRepositoryImpl({
-  required RestClient restClient,
-  }) : _restClient = restClient;
+  AuthRepositoryImpl({
+    required RestClient restClient,
+    }) : _restClient = restClient;
 
   @override
   Future<UserModel> register(String name, String email, String password) async {
@@ -71,21 +72,3 @@ AuthRepositoryImpl({
 
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

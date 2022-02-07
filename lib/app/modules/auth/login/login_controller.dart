@@ -9,13 +9,13 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class LoginController extends GetxController with LoaderMixin, MessagesMixin {
-  final AuthRepsitory _authRepsitory;
+  final AuthRepository _authRepsitory;
 
   final _loading = false.obs;
   final _message = Rxn<MessageModel>();
 
   LoginController({
-    required AuthRepsitory authRepsitory,
+    required AuthRepository authRepsitory,
   }) : _authRepsitory = authRepsitory;
 
   @override

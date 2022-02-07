@@ -4,8 +4,6 @@ import 'package:dartweek/app/core/ui/widgets/vakinha_button.dart';
 import 'package:dartweek/app/core/ui/widgets/vakinha_textformfield.dart';
 import 'package:dartweek/app/modules/auth/register/register_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_utils/src/extensions/context_extensions.dart';
 import 'package:validatorless/validatorless.dart';
 
@@ -25,9 +23,10 @@ class _RegisterPageState
 
   @override
   void dispose() {
-    _emailEC.dispose();
     _nameEC.dispose();
+    _emailEC.dispose();
     _passwordEC.dispose();
+    super.dispose();
   }
 
   @override

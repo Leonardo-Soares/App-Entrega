@@ -3,19 +3,18 @@ import 'dart:developer';
 import 'package:dartweek/app/core/mixins/loader_mixin.dart';
 import 'package:dartweek/app/core/mixins/messages_mixin.dart';
 import 'package:dartweek/app/core/rest_client/rest_client.dart';
-import 'package:dartweek/app/models/user_model.dart';
 import 'package:dartweek/app/repositories/auth/auth_repository.dart';
 import 'package:get/get.dart';
 
 class RegisterController extends GetxController
     with LoaderMixin, MessagesMixin {
-  final AuthRepsitory _authRepository;
+  final AuthRepository _authRepository; 
 
   final _loading = false.obs;
   final _message = Rxn<MessageModel>();
 
   RegisterController({
-    required AuthRepsitory authRepsitory,
+    required AuthRepository authRepsitory,
   }) : _authRepository = authRepsitory;
 
   @override

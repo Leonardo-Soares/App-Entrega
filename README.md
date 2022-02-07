@@ -6,20 +6,6 @@
 flutter create --project-name=vakinha_burguer_mobile --platforms=android --org br.com.academiadoflutter ./vakinha_burguer_mobile
 ~~~
 
-# AULA 2
-### Estudar LoaderMixin
-### Pesquisar sobre o dispose
-### Pesquisar sobre super.dispose()
-
-### AuthRepository todo acesso para autenticação
-
-# AULA 3
-### Pesquisar sobre o GetStorage
-### Getx
-    - Estrutura do RX (Getx)
-    - Get.offAllNamed
-
-
 A new Flutter project.
 
 ## Getting Started

@@ -31,7 +31,7 @@ class LoginController extends GetxController with LoaderMixin, MessagesMixin {
       final userLogged = await _authRepsitory.login(email, password);
 
       final storage = GetStorage();
-      storage.write(Constats.USER_KEY, userLogged.id);
+      storage.write(Constants.USER_KEY, userLogged.id);
       _loading.toggle();
     } on UserNotFoundException catch (e, s) {
       _loading.toggle();

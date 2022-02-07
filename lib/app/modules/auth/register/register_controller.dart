@@ -1,10 +1,12 @@
 import 'dart:developer';
 
+import 'package:dartweek/app/core/constantes/constantes.dart';
 import 'package:dartweek/app/core/mixins/loader_mixin.dart';
 import 'package:dartweek/app/core/mixins/messages_mixin.dart';
 import 'package:dartweek/app/core/rest_client/rest_client.dart';
 import 'package:dartweek/app/repositories/auth/auth_repository.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class RegisterController extends GetxController
     with LoaderMixin, MessagesMixin {
@@ -31,16 +33,9 @@ class RegisterController extends GetxController
   }) async {
     try {
       _loading.toggle();
-
-      final userModel = await _authRepository.register(name, email, password);
+      final userLogged = await _authRepository.register(name, email, password);
       _loading.toggle();
-      // TODO: Voltar quando fizer o login
-      Get.back();
-      _message(MessageModel(
-        title: 'Sucesso',
-        message: 'Cadastro realizado com sucesso',
-        type: MessageType.info,
-      ));
+      GetStorage().write(Constants.USER_KEY, userLogged.id);
     } on RestClientException catch (e, s) {
       _loading.toggle();
       log('Erro ao registrar login', error: e, stackTrace: s);
